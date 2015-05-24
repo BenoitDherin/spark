@@ -17,7 +17,7 @@ Spark requires
 * the Scala programming language
 * Java Runtime Environment (JRE)
 
-```
+```bash
 >tar xfvz spark-1.2.0-bin-hadoop2.4.tgz
 >cd spark-1.2.0-bin-hadoop2.4
 >./bin/run-example org.apache.spark.examples.SparkPi
@@ -31,13 +31,13 @@ Pi is roughly 3.1465
 …
 ```
 To configure the level of parallelism in the local mode, you can pass in a master parameter of the local[N] form, where N is the number of threads to use. For example, to use only two threads, run the following command instead:
-```
+```bash
 >MASTER=local[2] ./bin/run-example org.apache.spark.examples.SparkPi
 ```
 A Spark cluster is made up of two types of processes: a driver program and multiple executors. In the local mode, all these processes are run within the same JVM. In a cluster, these processes are usually run on separate nodes
 if we run the code on a Spark standalone cluster, we could simply pass in the URL for the master node as follows:
 
-```
+```bash
 >MASTER=spark://IP:PORT ./bin/run-example org.apache.spark.examples.SparkPi
 ```
 * http://spark.apache.org/docs/latest/cluster-overview.html
@@ -52,7 +52,7 @@ The starting point of writing any Spark program is SparkContext (or JavaSparkCon
 
 Once initialized, we will use the various methods found in the SparkContext object to create and manipulate distributed datasets and shared variables. 
 
-```
+```scala
 val conf = new SparkConf()
 .setAppName("Test Spark App")
 .setMaster("local[4]")
@@ -61,12 +61,12 @@ val sc = new SparkContext(conf)
 
  If we wish to use default configuration values, we could also call the following simple constructor for our SparkContext object, which works in exactly the same way:
 
-```
+```scala
 val sc = new SparkContext("local[4]", "Test Spark App")
 ```
 To use the Spark shell with Scala, simply run 
 
-```
+```bash
 ./bin/spark-shell
 ```
 
@@ -74,7 +74,7 @@ from the Spark base directory. This will launch the Scala shell and initialize S
 
 To use the Python shell with Spark, simply run the 
 
-```
+```bash
 ./bin/pyspark
 ```
 
@@ -91,8 +91,10 @@ val rddFromCollection = sc.parallelize(collection)
 
 RDDs can also be created from Hadoop-based input sources, including the local filesystem, HDFS, and Amazon S3. A Hadoop-based RDD can utilize any input format that implements the Hadoop InputFormat interface, including text files, other standard Hadoop formats, HBase, Cassandra, and many more. The following code is an example of creating an RDD from a text file located on the local filesystem:
 
+```scala
 val rddFromTextFile = sc.textFile("LICENSE")
 Spark operations
+```
 
 # Spark Transformations and Actions
 
@@ -111,3 +113,27 @@ val sumOfRecords = intsFromStringsRDD.sum
 val numRecords = intsFromStringsRDD.count
 val aveLengthOfRecord = sumOfRecords / numRecords
 ```
+
+* http://spark.apache.org/docs/latest/programming-guide.html#rdd-operations
+* http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.RDD
+
+# Caching RDDS
+
+```scala
+rddFromTextFile.cache
+```
+
+Calling cache on an RDD tells Spark that the RDD should be kept in memory. 
+
+```scala
+val aveLengthOfRecordChained = rddFromTextFile.map(line => line.size).sum / rddFromTextFile.count
+```
+ # Broadcast variables and accumulators
+ 
+ A broadcast variable is a read-only variable that is made available from the driver program that runs the SparkContext object to the nodes that will execute the computation. 
+
+```scala
+val broadcastAList = sc.broadcast(List("a", "b", "c", "d", "e"))
+sc.parallelize(List("1", "2", "3")).map(x => broadcastAList.value ++ x).collect
+```
+The `collect` method is a Spark action that returns the entire RDD to the driver as a Scala (or Python or Java) collection. (Beware that for large datasets this may transform the driver node into a bottle neck, or crash memory). 
