@@ -47,3 +47,7 @@ if we run the code on a Spark standalone cluster, we could simply pass in the UR
 
 * Spark Quick Start: http://spark.apache.org/docs/latest/quick-start.html
 * Spark Programming guide, which covers Scala, Java, and Python: http://spark.apache.org/docs/latest/programming-guide.html
+
+The starting point of writing any Spark program is SparkContext (or JavaSparkContext in Java). SparkContext is initialized with an instance of a SparkConf object, which contains various Spark cluster-configuration settings (for example, the URL of the master node).
+
+Once initialized, we will use the various methods found in the SparkContext object to create and manipulate distributed datasets and shared variables. 
