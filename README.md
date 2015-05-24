@@ -42,3 +42,8 @@ if we run the code on a Spark standalone cluster, we could simply pass in the UR
 ```
 * http://spark.apache.org/docs/latest/cluster-overview.html
 * http://spark.apache.org/docs/latest/submitting-applications.html
+
+# SparkContext object as well as the Spark shell
+
+* Spark Quick Start: http://spark.apache.org/docs/latest/quick-start.html
+* Spark Programming guide, which covers Scala, Java, and Python: http://spark.apache.org/docs/latest/programming-guide.html
