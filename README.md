@@ -64,3 +64,4 @@ val sc = new SparkContext(conf)
 ```
 val sc = new SparkContext("local[4]", "Test Spark App")
 ```
+To use the Spark shell with Scala, simply run ./bin/spark-shell from the Spark base directory. This will launch the Scala shell and initialize SparkContext, which is available to us as the Scala value, sc.
