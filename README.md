@@ -40,3 +40,5 @@ if we run the code on a Spark standalone cluster, we could simply pass in the UR
 ```
 >MASTER=spark://IP:PORT ./bin/run-example org.apache.spark.examples.SparkPi
 ```
+* http://spark.apache.org/docs/latest/cluster-overview.html
+* http://spark.apache.org/docs/latest/submitting-applications.html
