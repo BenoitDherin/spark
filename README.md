@@ -98,10 +98,16 @@ Spark operations
 
 Once we have created an RDD, we have a distributed collection of records that we can manipulate. In Spark's programming model, operations are split into 
 
-* transformation: i.e., an operation that applies some function to all the records in the dataset, changing the records in some way. 
- 
-* action: i.e., an operation that runs some computation or aggregation operation and returns the result to the driver program where SparkContext is running.
+* transformation: i.e., an operation that applies some function to all the records in the dataset, changing the records in some way. Example:
 
 ```scala
 val intsFromStringsRDD = rddFromTextFile.map(line => line.size)
+```
+ 
+* action: i.e., an operation that runs some computation or aggregation operation and returns the result to the driver program where SparkContext is running. Example:
+
+```scala
+val sumOfRecords = intsFromStringsRDD.sum
+val numRecords = intsFromStringsRDD.count
+val aveLengthOfRecord = sumOfRecords / numRecords
 ```
