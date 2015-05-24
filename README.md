@@ -92,3 +92,12 @@ val rddFromCollection = sc.parallelize(collection)
 RDDs can also be created from Hadoop-based input sources, including the local filesystem, HDFS, and Amazon S3. A Hadoop-based RDD can utilize any input format that implements the Hadoop InputFormat interface, including text files, other standard Hadoop formats, HBase, Cassandra, and many more. The following code is an example of creating an RDD from a text file located on the local filesystem:
 
 val rddFromTextFile = sc.textFile("LICENSE")
+Spark operations
+
+# Spark Transformations and Actions
+
+Once we have created an RDD, we have a distributed collection of records that we can manipulate. In Spark's programming model, operations are split into 
+
+* transformation: i.e., an operation that applies some function to all the records in the dataset, changing the records in some way. 
+ 
+* action: i.e., an operation that runs some computation or aggregation operation and returns the result to the driver program where SparkContext is running.
