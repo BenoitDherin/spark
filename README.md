@@ -116,3 +116,15 @@ val aveLengthOfRecord = sumOfRecords / numRecords
 
 * http://spark.apache.org/docs/latest/programming-guide.html#rdd-operations
 * http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.RDD
+
+# Caching RDDS
+
+```scala
+rddFromTextFile.cache
+```
+
+Calling cache on an RDD tells Spark that the RDD should be kept in memory. 
+
+```scala
+val aveLengthOfRecordChained = rddFromTextFile.map(line => line.size).sum / rddFromTextFile.count
+```
