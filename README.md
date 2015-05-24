@@ -83,3 +83,12 @@ command. Like the Scala shell, the Python SparkContext object should be availabl
 # Resilient Distributed Dataset (RDD)
 
 The core of Spark is a concept called the Resilient Distributed Dataset (RDD). An RDD is a collection of "records" (strictly speaking, objects of some type) that is distributed or partitioned across many nodes in a cluster (for the purposes of the Spark local mode, the single multithreaded process can be thought of in the same way). An RDD in Spark is fault-tolerant; this means that if a given node or task fails (for some reason other than erroneous user code, such as hardware failure, loss of communication, and so on), the RDD can be reconstructed automatically on the remaining nodes and the job will still complete.
+
+```
+val collection = List("a", "b", "c", "d", "e")
+val rddFromCollection = sc.parallelize(collection)
+```
+
+RDDs can also be created from Hadoop-based input sources, including the local filesystem, HDFS, and Amazon S3. A Hadoop-based RDD can utilize any input format that implements the Hadoop InputFormat interface, including text files, other standard Hadoop formats, HBase, Cassandra, and many more. The following code is an example of creating an RDD from a text file located on the local filesystem:
+
+val rddFromTextFile = sc.textFile("LICENSE")
