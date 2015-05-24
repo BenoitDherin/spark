@@ -128,3 +128,12 @@ Calling cache on an RDD tells Spark that the RDD should be kept in memory.
 ```scala
 val aveLengthOfRecordChained = rddFromTextFile.map(line => line.size).sum / rddFromTextFile.count
 ```
+ # Broadcast variables and accumulators
+ 
+ A broadcast variable is a read-only variable that is made available from the driver program that runs the SparkContext object to the nodes that will execute the computation. 
+
+```scala
+val broadcastAList = sc.broadcast(List("a", "b", "c", "d", "e"))
+sc.parallelize(List("1", "2", "3")).map(x => broadcastAList.value ++ x).collect
+```
+The `collect` method is a Spark action that returns the entire RDD to the driver as a Scala (or Python or Java) collection. (Beware that for large datasets this may transform the driver node into a bottle neck, or crash memory). 
