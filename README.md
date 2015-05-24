@@ -34,3 +34,4 @@ To configure the level of parallelism in the local mode, you can pass in a maste
 ```
 >MASTER=local[2] ./bin/run-example org.apache.spark.examples.SparkPi
 ```
+A Spark cluster is made up of two types of processes: a driver program and multiple executors. In the local mode, all these processes are run within the same JVM. In a cluster, these processes are usually run on separate nodes
