@@ -1,0 +1,15 @@
+#!/bin/bash
+SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+ROOT_DIR="$SCRIPT_DIR/.."
+
+echo $ROOT_DIR
+
+export SPARK_HOME="/vagrant/spark/spark"
+# export PYSPARK_SUBMIT_ARGS="\
+  # --master yarn \
+  # --deploy-mode client \
+  # --num-executors 24 \
+  # --executor-memory 10g \
+  # --executor-cores 5"
+
+ipython notebook  --notebook-dir="$PWD" --profile=lab

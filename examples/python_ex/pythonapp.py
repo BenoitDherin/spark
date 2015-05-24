@@ -18,4 +18,3 @@ print "Total purchases: %d" % num_purchases
 print "Unique users: %d" % unique_users
 print "Total_revenue: %d" % total_revenue
 print "Most most_popular: %s" % most_popular[0]
-
