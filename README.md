@@ -101,3 +101,7 @@ Once we have created an RDD, we have a distributed collection of records that we
 * transformation: i.e., an operation that applies some function to all the records in the dataset, changing the records in some way. 
  
 * action: i.e., an operation that runs some computation or aggregation operation and returns the result to the driver program where SparkContext is running.
+
+```scala
+val intsFromStringsRDD = rddFromTextFile.map(line => line.size)
+```
