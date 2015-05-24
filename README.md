@@ -113,3 +113,6 @@ val sumOfRecords = intsFromStringsRDD.sum
 val numRecords = intsFromStringsRDD.count
 val aveLengthOfRecord = sumOfRecords / numRecords
 ```
+
+* http://spark.apache.org/docs/latest/programming-guide.html#rdd-operations
+* http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.RDD
