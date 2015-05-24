@@ -1,4 +1,4 @@
-# spark
+# Installing Spark
 
 * http://spark.apache.org/docs/latest/ 
 * http://spark.apache.org/downloads.html
@@ -43,7 +43,7 @@ if we run the code on a Spark standalone cluster, we could simply pass in the UR
 * http://spark.apache.org/docs/latest/cluster-overview.html
 * http://spark.apache.org/docs/latest/submitting-applications.html
 
-# SparkContext object as well as the Spark shell
+# The SparkContext object and the Spark shells
 
 * Spark Quick Start: http://spark.apache.org/docs/latest/quick-start.html
 * Spark Programming guide, which covers Scala, Java, and Python: http://spark.apache.org/docs/latest/programming-guide.html
@@ -74,6 +74,8 @@ from the Spark base directory. This will launch the Scala shell and initialize S
 
 To use the Python shell with Spark, simply run the 
 
-```./bin/pyspark```
+```
+./bin/pyspark
+```
 
 command. Like the Scala shell, the Python SparkContext object should be available as the Python variable sc. 
